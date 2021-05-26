@@ -32,34 +32,8 @@ const structureImages = (data) => {
 let timeout = null;
 
 const ImageCarousel = () => {
-  const [images, setImages] = useState([
-    'https://b.thumbs.redditmedia.com/wMY3nkccnU7gRcXDLnGHshGnIic1rHgchauFoEpZM-A.jpg',
-    'https://b.thumbs.redditmedia.com/1oFC2nVfUVhj07aVnln8BAymnGaNwz-visvmQ05QDKE.jpg',
-    'https://b.thumbs.redditmedia.com/T0zVXdl5mDoFCZvhv4moqQueQIMXMRL8qEJzH0rjG6Q.jpg',
-    'https://a.thumbs.redditmedia.com/IAGlSIywhaZIaTwKeowoNNfAUFoDdBtQ7kDs2iW05v8.jpg',
-    'https://a.thumbs.redditmedia.com/KdgF9Pb-FKWDUzzUWevt2l9qoi07Pvry8KLjXOD8N90.jpg',
-    'https://b.thumbs.redditmedia.com/ZYbR5qfQugEaZCmqQbsIoiSboke5Wg_qS02co6_9EXI.jpg',
-    'https://b.thumbs.redditmedia.com/Hw_Jkc6deXlTKf_CeuTXRXRqhXF3Scfrq0dbhXWFTXc.jpg',
-    'https://b.thumbs.redditmedia.com/I1pzdr6yWV69DKefwWtTpUwuSWuLqCyFbnj9L5F6XzU.jpg',
-    'https://b.thumbs.redditmedia.com/UzwFlv-3K7cDKjf9jhUMXikn-6QzD1ZMRtzGSBTqBnk.jpg',
-    'https://b.thumbs.redditmedia.com/G1xid8Zkv_m5KzennH52kBnyWuodMr4DjLUADU1yFIk.jpg',
-    'https://a.thumbs.redditmedia.com/qCAIBve2zCPLPr48xci79nnB-OS9Zb5bgwq7yveolt0.jpg',
-    'https://b.thumbs.redditmedia.com/5W8YZJCkzKTWbnMz4-lKzzGx_wgp8z_imnTQ96AGwwM.jpg',
-    'https://b.thumbs.redditmedia.com/GiXdntAWEItxLwg1QFsVmbwBPQ4ZfZqaY8lvi8AKVfI.jpg',
-    'https://b.thumbs.redditmedia.com/OnjGwMqxjugXSrkGvMbzkoOuZMBLjF6yjg8_bZTgBIY.jpg',
-    'https://b.thumbs.redditmedia.com/-uZp_L55w0bsAY85_jbTh68-qz-Iz5j-lI-UNaz1lyU.jpg',
-    'https://a.thumbs.redditmedia.com/pH6JO2SQH_7pKvXYhyIWTNppcqvSQG1TDfd3UXM8rO4.jpg',
-    'https://b.thumbs.redditmedia.com/t9DyS4JczF4Jpv2IvIciWK9EOHCrSqiTEKc0y-iVoTw.jpg',
-    'https://b.thumbs.redditmedia.com/AhixQwHZw7wZp62ogoWMWWywm4X-hELrF97Hn3hMGsk.jpg',
-    'https://b.thumbs.redditmedia.com/AYdQ61Vywu3KHrBqcstGqgVDB2YP59qoBPR0wjFMV7Q.jpg',
-    'https://b.thumbs.redditmedia.com/lr3We7Na23oYetXwcIWiPKLtWgGscIu1ESD6QHkPYnk.jpg',
-    'https://b.thumbs.redditmedia.com/yLdnWaRG5umro-4Hq6_br2rX-47tBgR7pQttatYn3fk.jpg',
-    'https://a.thumbs.redditmedia.com/3GvmNmjg20qRHebCsnkYwTgtAgI8JtApR128Qb-uAf4.jpg',
-    'https://a.thumbs.redditmedia.com/Wu1NaqNHf4NS3nCZ4PdzGRgrCjHfO7Qcz689i_iNd14.jpg',
-    'https://b.thumbs.redditmedia.com/0uKOkz9fKnkk5Yj698gzmdL7eaQFDHBJ00ulWVQ4zpI.jpg',
-    'https://b.thumbs.redditmedia.com/Q9-LCOFoY_4gO3YBhFDAgKUokqo9rHT59E2tYgOISMA.jpg',
-  ]);
-  const [loading, setLoading] = useState(false);
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeImage, setActiveImage] = useState(0);
 
@@ -79,29 +53,29 @@ const ImageCarousel = () => {
     setActiveImage(newImage);
   };
 
-  // useEffect(() => {
-  //   const controller = new AbortController();
-  //   const { signal } = controller;
-  //   const getImages = async () => {
-  //     try {
-  //       const res = await fetch(endpoint, { signal });
-  //       const response = await res.json();
-  //       if (response?.data?.dist > 0) {
-  //         setImages(structureImages(response.data.children));
-  //       } else {
-  //         setError("There was an error with Reddit's enpoint");
-  //       }
-  //     } catch (err) {
-  //       setError(err);
-  //     }
-  //     setLoading(false);
-  //   };
-  //   getImages();
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+    const getImages = async () => {
+      try {
+        const res = await fetch(endpoint, { signal });
+        const response = await res.json();
+        if (response?.data?.dist > 0) {
+          setImages(structureImages(response.data.children));
+        } else {
+          setError("There was an error with Reddit's enpoint");
+        }
+      } catch (err) {
+        setError(err);
+      }
+      setLoading(false);
+    };
+    getImages();
 
-  //   return () => {
-  //     controller.abort();
-  //   };
-  // }, []);
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   useEffect(() => {
     clearTimeout(timeout);
@@ -114,15 +88,27 @@ const ImageCarousel = () => {
   }, [images, activeImage]);
 
   if (loading) {
-    return <div role="alert">Loading...</div>;
+    return (
+      <div role="alert" className={styles.alert}>
+        Loading...
+      </div>
+    );
   }
 
   if (error) {
-    return <div role="alert">There was an error: {error}</div>;
+    return (
+      <div role="alert" className={styles.alert}>
+        There was an error: {error}
+      </div>
+    );
   }
 
   if (images.length === 0) {
-    return <div role="alert">No images found for carousel</div>;
+    return (
+      <div role="alert" className={styles.alert}>
+        No images found for carousel
+      </div>
+    );
   }
 
   return (
