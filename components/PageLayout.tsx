@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 
 const defaultTitle = 'Frontend Eval Questions';
 const defaultDescription = 'Solving all frontend eval questions';
@@ -52,7 +53,9 @@ const Layout: React.FunctionComponent<Props> = ({
       </Head>
       <main>
         <header>
-          <h1>{page || title}</h1>
+          <Link href="/">
+            <h1>{page || title}</h1>
+          </Link>
         </header>
         {children}
       </main>

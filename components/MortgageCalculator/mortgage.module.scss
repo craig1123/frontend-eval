@@ -1,0 +1,21 @@
+@import '../../styles/variables.scss';
+
+.mortgage {
+  input {
+    min-width: 175px;
+    height: 32px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+  }
+}
+
+.input-wrapper {
+  display: flex;
+}
+
+.calculate {
+  background-color: rgb(114, 148, 234);
+  color: $white;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
