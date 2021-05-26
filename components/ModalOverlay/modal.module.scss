@@ -1,0 +1,58 @@
+@import '../../styles/variables.scss';
+.wrapper {
+  h4,
+  p {
+    text-align: center;
+  }
+}
+
+.showOffer {
+  display: block;
+  margin: 100px auto;
+  width: 150px;
+}
+
+.modal {
+  background-color: $white;
+  border: 1px solid $gray-12;
+  height: 100vh;
+  width: 100vw;
+  padding: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  z-index: 2;
+
+  button {
+    background-color: $white;
+    border: 1px solid $gray-12;
+    border-radius: 3px;
+  }
+
+  @media (min-width: $tablet) {
+    height: 250px;
+    width: 250px;
+  }
+}
+
+.modalOverlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.closeBtn {
+  padding: 5px;
+  text-align: center;
+  width: 40px;
+}
+
+.acceptOffer {
+  display: block;
+  margin: auto;
+}

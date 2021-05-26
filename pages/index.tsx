@@ -16,6 +16,12 @@ const Homepage = () => {
           <Link href="/mortgage-calculator">Mortgage Calculator</Link>
         </li>
         <li>
+          <Link href="/modal-overlay">Modal Overlay</Link>
+        </li>
+        <li>
+          <a href="https://craig1123.github.io/snake/">Snake Game</a>
+        </li>
+        <li>
           <Link href="/image-carousel">Image Carousel</Link>
         </li>
       </ul>
