@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
+import useImages from './useImages';
 import styles from './carousel.module.scss';
 /*
 Prompt https://frontendeval.com/questions/image-carousel
@@ -21,20 +22,10 @@ endpoint - https://www.reddit.com/r/aww/top/.json?t=all
 
 */
 
-const endpoint = 'https://www.reddit.com/r/aww/top/.json?t=all';
-
-const structureImages = (data) => {
-  return data.reduce((prev, cur) => {
-    return [...prev, cur.data.thumbnail];
-  }, []);
-};
-
 let timeout = null;
 
 const ImageCarousel = () => {
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { images, error, loading } = useImages();
   const [activeImage, setActiveImage] = useState(0);
 
   const goBackImage = () => {
@@ -52,30 +43,6 @@ const ImageCarousel = () => {
     }
     setActiveImage(newImage);
   };
-
-  useEffect(() => {
-    const controller = new AbortController();
-    const { signal } = controller;
-    const getImages = async () => {
-      try {
-        const res = await fetch(endpoint, { signal });
-        const response = await res.json();
-        if (response?.data?.dist > 0) {
-          setImages(structureImages(response.data.children));
-        } else {
-          setError("There was an error with Reddit's enpoint");
-        }
-      } catch (err) {
-        setError(err);
-      }
-      setLoading(false);
-    };
-    getImages();
-
-    return () => {
-      controller.abort();
-    };
-  }, []);
 
   useEffect(() => {
     clearTimeout(timeout);
