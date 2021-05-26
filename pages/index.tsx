@@ -15,6 +15,9 @@ const Homepage = () => {
         <li>
           <Link href="/mortgage-calculator">Mortgage Calculator</Link>
         </li>
+        <li>
+          <Link href="/image-carousel">Image Carousel</Link>
+        </li>
       </ul>
     </PageLayout>
   );

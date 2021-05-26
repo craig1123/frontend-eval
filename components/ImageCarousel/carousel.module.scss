@@ -1,0 +1,35 @@
+.carousel {
+  height: 300px;
+  width: 400px;
+  margin: 50px auto;
+  position: relative;
+}
+
+.arrow {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  position: absolute;
+  font-size: 50px;
+  z-index: 1;
+}
+
+.backArrow {
+  left: 0;
+  top: 50%;
+}
+
+.forwardArrow {
+  right: 0;
+  top: 50%;
+}
+
+.image {
+  display: none;
+  height: 300px;
+  width: 400px;
+}
+
+.activeImage {
+  display: block;
+}
