@@ -1,0 +1,23 @@
+import React from 'react';
+import Link from 'next/link';
+import PageLayout from 'components/PageLayout';
+
+const Homepage = () => {
+  return (
+    <PageLayout page="Welcome.">
+      <p>
+        I&apos;m building out each project from{' '}
+        <a href="https://frontendeval.com/" target="__blank" rel="noopener noreferrer">
+          https://frontendeval.com/
+        </a>
+      </p>
+      <ul>
+        <li>
+          <Link href="/mortgage-calculator">Mortgage Calculator</Link>
+        </li>
+      </ul>
+    </PageLayout>
+  );
+};
+
+export default Homepage;
