@@ -5,7 +5,7 @@ const initialGame = new Array(9).fill(null);
 
 type Player = 'X' | 'O';
 
-const calculateWin = (game: string[], player: Player) => {
+const calculateWin = (game: string[]) => {
   const winningArr = [
     [0, 1, 2], // horiz
     [3, 4, 5],
@@ -18,17 +18,9 @@ const calculateWin = (game: string[], player: Player) => {
   ];
 
   for (let i = 0; i < winningArr.length; i += 1) {
-    const arr = winningArr[i];
-    let win = true;
-    for (let j = 0; j < arr.length; j += 1) {
-      const btnIndex = arr[j];
-      if (game[btnIndex] !== player) {
-        win = false;
-        break;
-      }
-    }
-    if (win) {
-      return true;
+    const [a, b, c] = winningArr[i];
+    if (game[a] && game[a] === game[b] && game[a] === game[c]) {
+      return game[a];
     }
   }
 
@@ -47,7 +39,7 @@ const TicTacToe = () => {
     const updatedGame = [...game];
     updatedGame[i] = turn;
     setGame(updatedGame);
-    const win = calculateWin(updatedGame, turn);
+    const win = calculateWin(updatedGame);
     if (win) {
       setWinner(`${turn} won the game`);
     } else {
