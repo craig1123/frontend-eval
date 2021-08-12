@@ -23,7 +23,7 @@ const ImageCarousel = () => {
         if (response?.data?.dist > 0) {
           setImages(structureImages(response.data.children));
         } else {
-          setError("There was an error with Reddit's enpoint");
+          setError("There was an error with Reddit's endpoint");
         }
       } catch (err) {
         setError(err);

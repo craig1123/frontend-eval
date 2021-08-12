@@ -1,0 +1,15 @@
+.game-board {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 300px;
+  max-width: 300px;
+}
+
+.game-button {
+  box-shadow: none;
+  border: 1px solid #000;
+  background-color: #fff;
+  font-size: 2em;
+  width: 100px;
+  height: 100px;
+}

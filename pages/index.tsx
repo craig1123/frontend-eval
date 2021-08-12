@@ -28,6 +28,13 @@ const Homepage = () => {
           <Link href="/image-carousel">Image Carousel</Link>
         </li>
       </ul>
+      <br />
+      <p>Other Projects</p>
+      <ul>
+        <li>
+          <Link href="/tic-tac-toe">Tic Tac Toe</Link>
+        </li>
+      </ul>
     </PageLayout>
   );
 };
